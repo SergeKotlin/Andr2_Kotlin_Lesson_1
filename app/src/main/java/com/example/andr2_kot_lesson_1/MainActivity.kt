@@ -28,6 +28,10 @@ internal class MainActivity : AppCompatActivity() {
         Log.d("@@@", newTest.newField)
         Log.d("@@@", "${newTest is NewTest}") //проверяем (аналог instanceOf)
         Log.d("@@@", (newTest as NewTest).newField) //кастим в Котлин (cast в Java)
+
+        NewTest.Name.staticField // обращение к статике (через "псевдоним этой тюрьмы" :D) #статика
+        // <- используется, если единожды в классе надо иметь статичное поле
+        NewTestSingleTone.Name // второй вариант статики - через синглтон. Целый статический класс #статика
     }
 }
 
@@ -52,16 +56,30 @@ class NewTest(field0: Int, field2: Int):Test(field0, field2){
     public override val protString:String = ""
 
     var newField:String = ""
-    get() {
-        //return "$newField plus"
-        return "$field get"
-    }
-    set(value) {
-        field = "$value set"
-    }
+        get() {
+            //return "$newField plus"
+            return "$field get"
+        }
+        set(value) {
+            field = "$value set"
+        }
     init{ //init быстрее конструктора вызывается
         newField = "newField"
     }
+
+    // статичные поля. Правила обращения. #статика
+// Избегаем спагетти-код - заточаем всю статику "в тюрьму"
+    companion object Name{ // выдялем резервацию, можно дать ей псевдоним, заключаем статику сюда
+        const val staticField = "statica99!"
+    }
+}
+
+object NewTestSingleTone{// Синглтон. Сокращен весь бойлерплейт-код
+    var newField:String = ""
+     object Name{
+        const val staticField = "statica99!"
+    }
+
 }
 
 // Модификаторы видимости:
