@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
-class MainActivity : AppCompatActivity() {
+internal class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 open class Test constructor(val valI: Int, var varI: Int) {  //с ключ. словами val(var) мы задаём свойства,
 // без них - просто параметры конструктора)
 
+    protected open val protString = ""
+
     constructor(field: String) : this(-1, -1)  //слово конструктор используется напр. для перегрузки конструктора..
     // иначе можно опустить
 
@@ -46,6 +48,9 @@ open class Test constructor(val valI: Int, var varI: Int) {  //с ключ. сл
 
 // Наследование
 class NewTest(field0: Int, field2: Int):Test(field0, field2){
+
+    public override val protString:String = ""
+
     var newField:String = ""
     get() {
         //return "$newField plus"
@@ -59,4 +64,8 @@ class NewTest(field0: Int, field2: Int):Test(field0, field2){
     }
 }
 
-// остановка 2:12
+// Модификаторы видимости:
+// private - закрыто на замке -//-
+// public - видно всем -//-
+// protected - есть нюансы.. В Java - видимость во всез классах, расширяющий данный (+ родитель)
+// internal - видимость внутри модуля (package в Kotlin совсем на заднем плане, использование пакетов меньше)
