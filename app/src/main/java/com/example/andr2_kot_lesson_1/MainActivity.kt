@@ -3,11 +3,28 @@ package com.example.andr2_kot_lesson_1
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.appcompat.widget.AppCompatButton
 
 internal class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById<AppCompatButton>(R.id.btn).setOnClickListener (object : View.OnClickListener {
+            override fun onClick(p0: View?) {
+            }
+        })
+
+        val dataClass1 = Note("some_name", "note_body", R.color.black)
+        val dataClass2 = dataClass1.copy(color = R.color.teal_200)
+
+        // анонимный класс (напоминание) - получение сущности(экземпляра) без реализации класса
+        val andrej = object {
+            val name = "Andrej"
+            var age = 20
+        }
+        andrej.age = 21
 
         var fieldA = 5
         val fieldB = 5 // Дефолт по привычке делать val - хороший подход
