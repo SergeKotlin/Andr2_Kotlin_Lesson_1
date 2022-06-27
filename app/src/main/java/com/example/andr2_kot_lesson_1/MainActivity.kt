@@ -26,6 +26,16 @@ internal class MainActivity : AppCompatActivity() {
         }
         andrej.age = 21
 
+        // Switch переимнован в when, изменен синтаксис
+        val enumEl = WeatherType.RAINY
+        val todayCondition = when(enumEl){
+            WeatherType.RAINY -> "дождиво"
+            else -> {}
+        }
+
+        myToStringJava(andrej.age)
+        myToStringKotlin(andrej.age)
+
         var fieldA = 5
         val fieldB = 5 // Дефолт по привычке делать val - хороший подход
 
@@ -49,6 +59,41 @@ internal class MainActivity : AppCompatActivity() {
         NewTest.Name.staticField // обращение к статике (через "псевдоним этой тюрьмы" :D) #статика
         // <- используется, если единожды в классе надо иметь статичное поле
         NewTestSingleTone.Name // второй вариант статики - через синглтон. Целый статический класс #статика
+    }
+
+    // Оператор if, ветвления
+    private fun myToStringJava(age:Int):String{ // Java-подход
+        var result = ""
+        if (age == 20){
+            result = "двадцать"
+        }else{
+            result = "не двадцать"
+        }
+        return result
+    }
+    private fun myToStringKotlin(age:Int):String{ // Kotlin-подход
+        return if (age == 20){
+            "двадцать"
+            "двадцать" //возвращает последнюю строку
+        }else{
+            "не двадцать"
+        }
+    }
+
+    // Switch переимнован в when, изменен синтаксис
+    val field3 = 1..100
+    val field4 = 5
+    val WTV = when(field4){
+        in field3 -> {
+            "входит"
+        }
+        else -> {
+            "не входит"
+        }
+    }
+
+    enum class WeatherType {
+        SUNNY, RAINY, SNOWY
     }
 }
 
