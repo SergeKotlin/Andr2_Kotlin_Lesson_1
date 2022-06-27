@@ -17,7 +17,7 @@ internal class MainActivity : AppCompatActivity() {
         })
 
         val dataClass1 = Note("some_name", "note_body", R.color.black)
-        val dataClass2 = dataClass1.copy(color = R.color.teal_200)
+        val dataClass2 = dataClass1.copy(color = R.color.teal_200) // Полное копирование, с созданием и нового экземпляра, и ссылки на него
 
         // анонимный класс (напоминание) - получение сущности(экземпляра) без реализации класса
         val andrej = object {
