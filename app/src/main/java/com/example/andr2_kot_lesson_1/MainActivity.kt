@@ -59,6 +59,53 @@ internal class MainActivity : AppCompatActivity() {
         NewTest.Name.staticField // обращение к статике (через "псевдоним этой тюрьмы" :D) #статика
         // <- используется, если единожды в классе надо иметь статичное поле
         NewTestSingleTone.Name // второй вариант статики - через синглтон. Целый статический класс #статика
+
+        // Циклы
+        val daysOfWeek = listOf("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+        Log.d("@@@", "----------------")
+        daysOfWeek.forEach { // Самое распространённое
+            Log.d("@@@", "$it")
+        }
+
+        Log.d("@@@", "----------------")
+        for (i in daysOfWeek) { // Аналог forEach
+            Log.d("@@@", "$i")
+        }
+
+        Log.d("@@@", "----------------")
+        repeat(daysOfWeek.size) {
+            Log.d("@@@", "${daysOfWeek[it]}")
+        }
+
+        // Менее популярные:
+        Log.d("@@@", "----------------")
+        for (i in daysOfWeek.indices) {
+            Log.d("@@@", "${daysOfWeek[i]}")
+        }
+
+        Log.d("@@@", "----------------")
+        for (i in 0..daysOfWeek.size-1) {
+            Log.d("@@@", "${daysOfWeek[i]}")
+        }
+
+        Log.d("@@@", "----------------")
+        for (i in daysOfWeek.size-1 downTo 0 step 1) { // опциональное управление шагом step
+            Log.d("@@@", "${daysOfWeek[i]}")
+        }
+        Log.d("@@@", "----------------")
+        for (i in 0 until daysOfWeek.size) {
+            Log.d("@@@", "${daysOfWeek[i]}")
+        }
+        Log.d("@@@", "--------while--------")
+        var counter = daysOfWeek.size
+        while (--counter >= 0) {
+            Log.d("@@@", "${daysOfWeek[counter]}")
+        }
+        Log.d("@@@", "--------do-while--------")
+        counter = daysOfWeek.size-1
+        do {
+            Log.d("@@@", "${daysOfWeek[counter]}")
+        } while (--counter >= 0)
     }
 
     // Оператор if, ветвления
